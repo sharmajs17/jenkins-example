@@ -5,6 +5,14 @@ pipeline {
         maven 'Maven_3.5.2' 
         jdk 'jdk8'
     }
+    
+    stages {
+        stage('Build stage') {
+            steps {
+                bat "mvn install" 
+        }
+    }
+        
     stages {
         stage('Compile stage') {
             steps {
