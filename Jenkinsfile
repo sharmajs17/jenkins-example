@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-        stage ('Build Stage') {
+         stage ('Build Stage') {
 
             steps {
                 withMaven(maven : 'maven_3.5.0') {
@@ -10,8 +10,7 @@ pipeline {
                 }
             }
         }
-        
-    stages {
+
         stage ('Compile Stage') {
 
             steps {
@@ -39,5 +38,4 @@ pipeline {
             }
         }
     }
-}
 }
