@@ -1,37 +1,42 @@
 pipeline {
-
     agent any
-    tools {
-        maven 'Maven_3.5.2' 
-        jdk 'jdk8'
-    }
-    
+
     stages {
-        stage('Build stage') {
+        stage ('Build Stage') {
+
             steps {
-                bat "mvn install" 
+                withMaven(maven : 'maven_3.5.0') {
+                    sh 'mvn install'
+                }
+            }
         }
-    }
         
     stages {
-        stage('Compile stage') {
+        stage ('Compile Stage') {
+
             steps {
-                bat "mvn clean compile" 
+                withMaven(maven : 'maven_3.5.0') {
+                    sh 'mvn clean compile'
+                }
+            }
+        }
+
+        stage ('Testing Stage') {
+
+            steps {
+                withMaven(maven : 'maven_3.5.0') {
+                    sh 'mvn test'
+                }
+            }
+        }
+
+
+        stage ('Deployment Stage') {
+            steps {
+                withMaven(maven : 'maven_3.5.0') {
+                    sh 'mvn deploy'
+                }
+            }
         }
     }
-
-         stage('testing stage') {
-             steps {
-                bat "mvn test"
-        }
-    }
-
-          stage('deployment stage') {
-              steps {
-                bat "mvn deploy"
-        }
-    }
-
-  }
-
 }
