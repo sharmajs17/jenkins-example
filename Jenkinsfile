@@ -30,12 +30,12 @@ pipeline {
         }
 
 
-  //      stage ('Deployment Stage') {
-  //          steps {
-  //              withMaven(maven : 'maven_3.5.0') {
-  //                  sh 'mvn deploy'
-  //              }
-  //          }
-  //      }
+        stage ('Deployment Stage') {
+            steps {
+                withMaven(maven : 'maven_3.5.0') {
+                    sh 'mvn deploy'
+                }
+            }
+        }
     }
 }
